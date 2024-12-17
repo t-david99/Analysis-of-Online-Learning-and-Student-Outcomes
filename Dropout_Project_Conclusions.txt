@@ -1,0 +1,67 @@
+Comparison of all classfication Models
+
+In terms of accuracy, the random forest model using only the selected features using LASSO regression had the best performance. 
+With the exception of using the SVD-reduced data, random forest in fact consistently achieved the largest accuracy. This finding 
+is expected, as random forest is known to be a powerful classification model. It leverages the combined predictions of multiple 
+decision trees, each built from distinct combinations of independent variables drawn from bootstrap samples. But, it is not 
+expected for the SVD-reduced data to result in a more accurate logistic regression and support vector machine model than random 
+forest, since baseline models typically do not predict as well as ensemble models \citep{Me}. AdaBoost performed the worst in 
+terms of accuracy for the SVD-reduced data, which is very surprising because it is an ensemble model, similar to building multiple
+logistic regression models. AdaBoost consistently performs the second worst across the full data and the LASSO-reduced data, in 
+front of the KNN and classification tree, respectively. KNN performs the second best in terms of accuracy on the LASSO-reduced 
+dataset, which makes sense because it is known that KNN requires good variable selection for a good performance. 
+
+Furthermore, in terms of precision, all models did quite well except for the classification tree. The classification tree was the 
+only model that performed with a precision of much less than 0.8 across the versions of the data used. AdaBoost consistently 
+achieved the greatest precision across all versions of the data and therefore the largest true positive rate. Surprisingly, 
+random forest performed among the worst in terms of precision, except for the version of the data that contained all features. 
+SVM, KNN, and logistic regression all had a true positive rate of greater than 0.8. And thus overall, the classification models 
+did quite well in terms of precision.
+
+Also, in terms of recall, random forest performed the best on the LASSO-reduced and the full data. Logistic regression performed 
+the best in terms of recall on the SVD-reduced data. This is likely because of the probabilistic nature of logistic regression, 
+since SVD relies on conserving the largest amount of variance possible within the data. AdaBoost performed the worst in terms of 
+recall on the SVD-reduced data. After its poor performance in terms of accuracy and great performance in terms of precision, this 
+is not a very surprising finding. For the full data, the KNN model performed the worst in terms of recall, which is not too 
+surprising because as noted before, KNN requires good variable selection. Lastly, the classification tree performed the worst in 
+terms of recall on the SVD-reduced data, another unsurprising finding due to being an overly simplistic type of model, exhibiting 
+a large variance.
+
+Lastly, in terms of the F1 score, the random forest model performed the best on both the full and LASSO-reduced data. Since the 
+F1 the harmonic average of precision and recall, this is expected. For the SVD-reduced data, the logistic regression model 
+performed the best, again, an expected trend since it had the best recall and close to the best precision. The classification 
+tree performs the worst across all versions of the data in terms of F1 score.
+
+Overall, using a lower number of features creates a more simplistic model and reduces variance, which helps balance out the 
+bias-variance trade-off. Balancing out the bias-variance trade-off is essential in minimizing error. And thus the random forest 
+model performs the best on the test data. Conversely, the classification tree performs the worst on the test data (since LASSO 
+reduces the number of features in the data the most).
+
+All of the classification models' hyperparameters were optimized using 5-fold cross validation using scikit-learn's model_selection 
+module in Python. For all of the ensemble classification models, the scikit-learn library's ensemble module was used for fitting 
+and testing. All classfication models used the scikit-learn library in Python for fitting and testing. Logistic regression was 
+fit and tested the linear_model module, SVM with the SVC function, KNN with the neighbors module, and classification tree with 
+the tree module in Python.
+
+Conclusion
+
+In summary, online learning has increased significantly compared to traditional in-person education, especially following the 
+global impact of the COVID-19 pandemic. In the online environment, there has been a significant increase in the dropout rate 
+(He et al., 2020). Accurately making predictions on whether a student will dropout is the aim of this project, and all factors 
+that impact this prediction have been investigated. t-SNE was used to properly visualize a 2-dimensional representation of the 
+data, and singular value decomposition and LASSO regression were performed for variable selection. Additionally, LASSO regression 
+was performed to determine the most important factors that contribute to dropout rate.
+
+It was found that the random forest ensemble model had the overall best performance. Accuracy, precision, recall, and F1 score 
+were used to determine which classification model performed the best. Random forest performed the best on the reduced data using 
+LASSO regression. LASSO regression chose the most relevant features within the data. None of which consisted of metrics involving 
+a student’s parents. It was made clear that the most important metrics used to predict the outcome was academic performance and 
+other academic-related metrics. In particular, the following features played the most prominent role in predicting whether a
+given student dropped out, is enrolled in classes, or has graduated: the number of curricular credits enrolled and credited in the 
+second semester, whether their tuition fees are up to date, whether the student is a scholarship holder, and the number of 
+curricular credits approved in the first semester.
+
+References
+
+He, Y., Chen, R., Li, X., Hao, C., Liu, S., Zhang, G., and Jiang, B. (2020). Online at-risk student identification using 
+rnn-gru joint neural networks. Information, 11(10)
