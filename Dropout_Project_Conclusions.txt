@@ -5,7 +5,7 @@ With the exception of using the SVD-reduced data, random forest in fact consiste
 is expected, as random forest is known to be a powerful classification model. It leverages the combined predictions of multiple 
 decision trees, each built from distinct combinations of independent variables drawn from bootstrap samples. But, it is not 
 expected for the SVD-reduced data to result in a more accurate logistic regression and support vector machine model than random 
-forest, since baseline models typically do not predict as well as ensemble models \citep{Me}. AdaBoost performed the worst in 
+forest, since baseline models typically do not predict as well as ensemble models. AdaBoost performed the worst in 
 terms of accuracy for the SVD-reduced data, which is very surprising because it is an ensemble model, similar to building multiple
 logistic regression models. AdaBoost consistently performs the second worst across the full data and the LASSO-reduced data, in 
 front of the KNN and classification tree, respectively. KNN performs the second best in terms of accuracy on the LASSO-reduced 
